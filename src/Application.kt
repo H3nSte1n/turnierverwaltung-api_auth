@@ -1,18 +1,19 @@
 package com.turnierverwaltung_api_auth
 
+import api
 import com.fasterxml.jackson.databind.*
+import com.papsign.ktor.openapigen.OpenAPIGen
 import io.ktor.application.*
 import io.ktor.features.*
 import io.ktor.http.*
+import io.ktor.http.content.*
 import io.ktor.jackson.*
-import io.ktor.response.*
 import io.ktor.routing.*
-import kotlinx.coroutines.*
 
 fun main(args: Array<String>): Unit = io.ktor.server.netty.EngineMain.main(args)
 
 @kotlin.jvm.JvmOverloads
-fun Application.module(testing: Boolean = false) {
+fun Application.module() {
     install(CORS) {
         method(HttpMethod.Options)
         method(HttpMethod.Put)
@@ -29,25 +30,18 @@ fun Application.module(testing: Boolean = false) {
             enable(SerializationFeature.INDENT_OUTPUT)
         }
     }
-    runBlocking {
-        // Sample for making a HTTP Client request
-        /*
-        val message = client.post<JsonSampleClass> {
-            url("http://127.0.0.1:8080/path/to/endpoint")
-            contentType(ContentType.Application.Json)
-            body = JsonSampleClass(hello = "world")
-        }
-        */
+
+    install(OpenAPIGen) {
+        serveSwaggerUi = true
+        swaggerUiPath = "/swagger-ui"
     }
 
     routing {
-        get("/") {
-            call.respondText("HELLO WORLD!", contentType = ContentType.Text.Plain)
+        static("/static") {
+            resources("api")
         }
 
-        get("/json/jackson") {
-            call.respond(mapOf("hello" to "world"))
-        }
+        api()
     }
 }
 
