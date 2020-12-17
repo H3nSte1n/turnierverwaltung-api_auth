@@ -4,7 +4,7 @@ import io.ktor.http.*
 import io.ktor.response.*
 
 fun StatusPages.Configuration.defaultStatusPage() {
-    exception<ThrowableException> {  cause ->
+    exception<ThrowableException> { cause ->
         call.respondText(
             cause.message,
             ContentType.Text.Plain,
@@ -14,4 +14,3 @@ fun StatusPages.Configuration.defaultStatusPage() {
 }
 
 data class ThrowableException(override val message: String = HttpStatusCode.BadRequest.description) : Exception()
-

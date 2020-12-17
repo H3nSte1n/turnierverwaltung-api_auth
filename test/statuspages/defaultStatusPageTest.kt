@@ -1,10 +1,10 @@
 import io.ktor.application.*
 import io.ktor.features.*
 import io.ktor.http.*
+import io.ktor.routing.*
 import io.ktor.server.testing.*
 import org.junit.Test
 import kotlin.test.assertEquals
-import io.ktor.routing.*
 
 class defaultStatusPageTest {
 

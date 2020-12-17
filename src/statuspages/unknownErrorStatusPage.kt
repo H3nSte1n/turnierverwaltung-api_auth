@@ -4,7 +4,7 @@ import io.ktor.http.*
 import io.ktor.response.*
 
 fun StatusPages.Configuration.unknownErrorStatusPage() {
-    exception<UnknownErrorException> {  cause ->
+    exception<UnknownErrorException> { cause ->
         call.respondText(
             cause.message,
             ContentType.Text.Plain,
@@ -14,4 +14,3 @@ fun StatusPages.Configuration.unknownErrorStatusPage() {
 }
 
 data class UnknownErrorException(override val message: String = HttpStatusCode.InternalServerError.description) : Exception()
-

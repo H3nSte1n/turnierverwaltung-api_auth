@@ -8,7 +8,8 @@ fun StatusPages.Configuration.authStatusPage() {
         call.respondText(
             cause.message,
             ContentType.Text.Plain,
-            status = HttpStatusCode.Unauthorized)
+            status = HttpStatusCode.Unauthorized
+        )
     }
 }
 
