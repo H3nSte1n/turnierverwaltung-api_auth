@@ -25,10 +25,7 @@ paths:
           content:
             application/json:
               schema:
-                properties:
-                  token:
-                    type: string
-                    example: '***.***.***'
+                $ref: './components/jwt.yml#/components/schemas/JWT'
         401:
           $ref: './components/errors.yml#/components/responses/Unauthorized'
         404:
@@ -42,17 +39,16 @@ paths:
         content:
           application/json:
             schema:
-              $ref: './components/credentials.yml#/components/schemas/Credentials'
+              allOf:
+                - $ref: './components/credentials.yml#/components/schemas/Credentials'
+                - $ref: './components/credentials.yml#/components/schemas/Credentials--extended'
       responses:
         '200':
           description: Return JWT Token
           content:
             application/json:
               schema:
-                properties:
-                  token:
-                    type: string
-                    example: '***.***.***'
+                $ref: './components/jwt.yml#/components/schemas/JWT'
         401:
           $ref: './components/errors.yml#/components/responses/Unauthorized'
         404:
