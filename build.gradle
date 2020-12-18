@@ -48,6 +48,16 @@ dependencies {
     implementation "io.ktor:ktor-client-gson:$ktor_version"
     implementation "io.ktor:ktor-client-logging-jvm:$ktor_version"
     implementation 'com.github.papsign:Ktor-OpenAPI-Generator:-SNAPSHOT'
+
+    //environment variables
+    implementation 'io.github.cdimascio:dotenv-kotlin:6.2.1'
+
+    //database
+    implementation 'org.jetbrains.exposed:exposed:0.17.6'
+    implementation 'com.zaxxer:HikariCP:3.4.5'
+    implementation 'org.postgresql:postgresql:42.2.1'
+
+    //testing
     testImplementation "io.ktor:ktor-server-tests:$ktor_version"
 }
 
