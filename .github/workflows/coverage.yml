@@ -3,30 +3,22 @@ name: coverage
 on:
   workflow_run:
     workflows: [ "CI" ]
-  push:
-    branches: '*'
-  pull_request:
-    branches: '*'
 
 jobs:
-  test:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout Repo
-        uses: actions/checkout@v2
-      - name: Set up JDK 15
-        uses: actions/setup-java@v1
-        with:
-          java-version: 15
-      - name: Test with gradle
-        run: ./gradlew test
 
   badge:
-    needs: test
     runs-on: ubuntu-latest
 
     steps:
+    - name: Checkout Repo
+      uses: actions/checkout@v2
+    - name: Set up JDK 15
+      uses: actions/setup-java@v1
+      with:
+        java-version: 15
+    - name: Test with gradle
+      run: ./gradlew test
+
     - name: Generate Jacoco Badge
       id: jacoco
       uses: cicirello/jacoco-badge-generator@v1.0.0
