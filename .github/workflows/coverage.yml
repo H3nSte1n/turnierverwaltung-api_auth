@@ -48,13 +48,16 @@ jobs:
           branch: create-pull-request/badge
           delete-branch: true
 
-  artifact:
+  automerge:
     needs: badge
     runs-on: ubuntu-latest
 
     steps:
-      - name: Upload Jacoco coverage report
-        uses: actions/upload-artifact@v2
-        with:
-          name: jacoco-report
-          path: build/reports/jacoco/test/
+      - name: automerge
+        uses: pascalgn/automerge-action@v0.12.0
+        env:
+          GITHUB_TOKEN: "${{ secrets.TOKEN }}"
+          MERGE_LABELS: "automerge,!wip,!work in progress"
+          MERGE_REMOVE_LABELS: "automerge"
+          MERGE_METHOD: "squash"
+          MERGE_COMMIT_MESSAGE: "Automatic merged pull-request"
