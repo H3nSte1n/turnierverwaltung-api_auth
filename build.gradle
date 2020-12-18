@@ -5,7 +5,7 @@ buildscript {
             url "https://plugins.gradle.org/m2/"
         }
     }
-    
+
     dependencies {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath "org.jlleitschuh.gradle:ktlint-gradle:9.4.1"
@@ -15,6 +15,7 @@ buildscript {
 apply plugin: 'kotlin'
 apply plugin: 'application'
 apply plugin: "org.jlleitschuh.gradle.ktlint"
+apply plugin: 'jacoco'
 
 group 'com.turnierverwaltung_api_auth'
 version '0.0.1'
@@ -52,5 +53,35 @@ dependencies {
 
 subprojects {
     apply plugin: "org.jlleitschuh.gradle.ktlint"
+}
+
+jacoco {
+    toolVersion = "0.8.6"
+}
+
+jacocoTestReport {
+
+    dependsOn jacocoTestCoverageVerification
+
+    reports {
+        html.enabled true
+        xml.enabled true
+        csv.enabled true
+        html.destination file("${buildDir}/reports/jacoco/")
+    }
+}
+
+jacocoTestCoverageVerification {
+    violationRules {
+        rule {
+            limit {
+                minimum = 0.7
+            }
+        }
+    }
+}
+
+test {
+    finalizedBy jacocoTestReport // report is always generated after tests run
 }
 
