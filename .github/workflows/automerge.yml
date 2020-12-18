@@ -2,7 +2,7 @@ name: automerge
 
 on:
   workflow_run:
-    workflows: [ "coverage" ]
+    workflows: [ "CI" ]
     types:
       - completed
 
