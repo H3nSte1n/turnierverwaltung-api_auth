@@ -31,11 +31,6 @@ jobs:
         run: |
           echo "coverage = ${{ steps.jacoco.outputs.coverage }}"
 
-  pullrequest:
-    needs: badge
-    runs-on: ubuntu-latest
-
-    steps:
       - name: Create pull request
         if: ${{ github.event_name == 'push' }}
         uses: peter-evans/create-pull-request@v3.4.1
