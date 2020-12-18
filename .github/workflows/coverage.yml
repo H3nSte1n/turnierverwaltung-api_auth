@@ -49,10 +49,10 @@ jobs:
           delete-branch: true
 
       - name: automerge
-          uses: pascalgn/automerge-action@v0.12.0
-          env:
-            GITHUB_TOKEN: "${{ secrets.TOKEN }}"
-            MERGE_LABELS: "automerge,!wip,!work in progress"
-            MERGE_REMOVE_LABELS: "automerge"
-            MERGE_METHOD: "squash"
-            MERGE_COMMIT_MESSAGE: "Automatic merged pull-request"
+        uses: pascalgn/automerge-action@v0.12.0
+        env:
+          GITHUB_TOKEN: "${{ secrets.TOKEN }}"
+          MERGE_LABELS: "automerge,!wip,!work in progress"
+          MERGE_REMOVE_LABELS: "automerge"
+          MERGE_METHOD: "squash"
+          MERGE_COMMIT_MESSAGE: "Automatic merged pull-request"
