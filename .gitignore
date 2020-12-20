@@ -31,3 +31,5 @@ hs_err_pid*
 /.idea
 
 .DS_Store
+.env
+.env.test

@@ -1,3 +1,4 @@
+package statuspages
 import io.ktor.application.*
 import io.ktor.features.*
 import io.ktor.http.*

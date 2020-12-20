@@ -1,3 +1,5 @@
+package statuspages
+
 import io.ktor.application.*
 import io.ktor.features.*
 import io.ktor.http.*
@@ -6,30 +8,30 @@ import io.ktor.server.testing.*
 import org.junit.Test
 import kotlin.test.assertEquals
 
-class unknownErrorStatusPage {
+class DefaultStatusPageTest {
 
     @Test
     fun testResponse() {
         withTestApplication {
             application.install(StatusPages) {
-                unknownErrorStatusPage()
+                defaultStatusPage()
             }
             application.routing {
                 get("/exception") {
-                    throw UnknownErrorException()
+                    throw ThrowableException()
                 }
             }
 
             handleRequest(HttpMethod.Get, "/exception").let { call ->
                 assertEquals(
-                    HttpStatusCode.InternalServerError,
+                    HttpStatusCode.BadRequest,
                     call.response.status(),
-                    "Should return status code 500"
+                    "Should return status code 400"
                 )
                 assertEquals(
-                    HttpStatusCode.InternalServerError.description,
+                    HttpStatusCode.BadRequest.description,
                     call.response.content,
-                    "Should return error message from InternalServerError"
+                    "Should return error message from BadRequest"
                 )
             }
         }

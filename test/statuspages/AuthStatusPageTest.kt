@@ -1,3 +1,5 @@
+package statuspages
+
 import io.ktor.application.*
 import io.ktor.features.*
 import io.ktor.http.*
@@ -6,7 +8,7 @@ import io.ktor.server.testing.*
 import org.junit.Test
 import kotlin.test.assertEquals
 
-class authStatusPageTest {
+class AuthStatusPageTest {
     @Test
     fun testResponse() {
         withTestApplication {

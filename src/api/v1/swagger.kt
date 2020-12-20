@@ -1,3 +1,5 @@
+package api.v1
+
 import io.ktor.application.*
 import io.ktor.response.*
 import io.ktor.routing.*

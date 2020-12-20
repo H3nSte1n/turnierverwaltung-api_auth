@@ -1,21 +1,28 @@
 package com.turnierverwaltung_api_auth
 
-import api
-import authStatusPage
+import api.api
+import api.db.DatabaseFactory
 import com.fasterxml.jackson.databind.*
 import com.papsign.ktor.openapigen.OpenAPIGen
-import defaultStatusPage
+import io.github.cdimascio.dotenv.dotenv
 import io.ktor.application.*
 import io.ktor.features.*
 import io.ktor.http.*
 import io.ktor.http.content.*
 import io.ktor.jackson.*
 import io.ktor.routing.*
-import unknownErrorStatusPage
+import statuspages.authStatusPage
+import statuspages.defaultStatusPage
+import statuspages.unknownErrorStatusPage
 
 fun main(args: Array<String>): Unit = io.ktor.server.netty.EngineMain.main(args)
 
 fun Application.module() {
+    val dotenv = dotenv {
+        ignoreIfMissing = true
+    }
+    DatabaseFactory.init(dotenv)
+
     install(CORS) {
         method(HttpMethod.Options)
         method(HttpMethod.Put)
@@ -52,5 +59,3 @@ fun Application.module() {
         api()
     }
 }
-
-data class JsonSampleClass(val hello: String)
