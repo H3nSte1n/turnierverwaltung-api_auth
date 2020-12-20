@@ -6,7 +6,6 @@ import io.github.cdimascio.dotenv.Dotenv
 import org.jetbrains.exposed.sql.Database
 import java.util.*
 
-
 object DatabaseFactory {
     fun init(dotenv: Dotenv) {
         Database.Companion.connect(config(dotenv))

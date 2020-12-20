@@ -1,11 +1,12 @@
 package com.turnierverwaltung_api_auth
 
-import api
+import api.api
 import api.db.DatabaseFactory
-import authStatusPage
 import com.fasterxml.jackson.databind.*
 import com.papsign.ktor.openapigen.OpenAPIGen
-import defaultStatusPage
+import com.turnierverwaltung_api_auth.statuspages.authStatusPage
+import com.turnierverwaltung_api_auth.statuspages.defaultStatusPage
+import com.turnierverwaltung_api_auth.statuspages.unknownErrorStatusPage
 import io.github.cdimascio.dotenv.dotenv
 import io.ktor.application.*
 import io.ktor.features.*
@@ -13,7 +14,6 @@ import io.ktor.http.*
 import io.ktor.http.content.*
 import io.ktor.jackson.*
 import io.ktor.routing.*
-import unknownErrorStatusPage
 
 fun main(args: Array<String>): Unit = io.ktor.server.netty.EngineMain.main(args)
 

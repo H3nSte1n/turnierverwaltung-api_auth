@@ -1,3 +1,5 @@
+package api.v1
+
 import io.ktor.routing.*
 
 fun Route.v1() {

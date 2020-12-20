@@ -1,10 +1,9 @@
-package com.turnierverwaltung_api_auth.api.v1
+package api.v1
 
 import com.turnierverwaltung_api_auth.module
 import io.ktor.application.*
 import io.ktor.features.*
 import io.ktor.http.*
-import io.ktor.server.engine.*
 import io.ktor.server.testing.*
 import kotlin.test.*
 
