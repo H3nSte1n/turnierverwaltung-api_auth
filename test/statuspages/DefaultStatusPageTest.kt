@@ -1,7 +1,5 @@
 package statuspages
 
-import com.turnierverwaltung_api_auth.statuspages.ThrowableException
-import com.turnierverwaltung_api_auth.statuspages.defaultStatusPage
 import io.ktor.application.*
 import io.ktor.features.*
 import io.ktor.http.*

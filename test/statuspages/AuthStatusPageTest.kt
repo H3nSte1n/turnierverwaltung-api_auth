@@ -1,7 +1,5 @@
 package statuspages
 
-import com.turnierverwaltung_api_auth.statuspages.AuthenticationException
-import com.turnierverwaltung_api_auth.statuspages.authStatusPage
 import io.ktor.application.*
 import io.ktor.features.*
 import io.ktor.http.*
