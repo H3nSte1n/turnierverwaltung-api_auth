@@ -23,6 +23,8 @@ fun Application.module() {
     }
     DatabaseFactory.init(dotenv)
 
+    install(Authentication)
+
     install(CORS) {
         method(HttpMethod.Options)
         method(HttpMethod.Put)
