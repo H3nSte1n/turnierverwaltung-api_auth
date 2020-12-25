@@ -1,14 +1,29 @@
-package api.db
+package config
 
 import com.zaxxer.hikari.HikariConfig
 import com.zaxxer.hikari.HikariDataSource
 import io.github.cdimascio.dotenv.Dotenv
 import org.jetbrains.exposed.sql.Database
+import org.jetbrains.exposed.sql.SchemaUtils
+import org.jetbrains.exposed.sql.transactions.transaction
+import schemas.Users
 import java.util.*
 
 object DatabaseFactory {
+    lateinit var database: Database
     fun init(dotenv: Dotenv) {
-        Database.Companion.connect(config(dotenv))
+        database = Database.Companion.connect(config(dotenv))
+
+        transaction {
+            exec("""
+                DO ${'$'}${'$'} BEGIN
+                    CREATE TYPE UserRole AS ENUM ('admin', 'user');
+                EXCEPTION
+                    WHEN duplicate_object THEN null;
+                END ${'$'}${'$'};
+            """.trimIndent())
+            SchemaUtils.create(Users)
+        }
     }
 
     private fun config(dotenv: Dotenv): HikariDataSource {
