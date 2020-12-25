@@ -47,7 +47,9 @@ dependencies {
     implementation "io.ktor:ktor-client-json-jvm:$ktor_version"
     implementation "io.ktor:ktor-client-gson:$ktor_version"
     implementation "io.ktor:ktor-client-logging-jvm:$ktor_version"
+    implementation "io.ktor:ktor-auth-jwt:$ktor_version"
     implementation 'com.github.papsign:Ktor-OpenAPI-Generator:-SNAPSHOT'
+    implementation "org.mindrot:jbcrypt:0.4"
 
     //environment variables
     implementation 'io.github.cdimascio:dotenv-kotlin:6.2.1'
@@ -60,6 +62,10 @@ dependencies {
     //testing
     testImplementation "io.ktor:ktor-server-tests:$ktor_version"
     testImplementation "org.jetbrains.kotlin:kotlin-test"
+    testImplementation("io.mockk:mockk:1.10.0")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.6.2")
+    testImplementation("org.junit.jupiter:junit-jupiter-api:5.6.2")
+    testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
 }
 
 subprojects {
@@ -86,7 +92,7 @@ jacocoTestCoverageVerification {
     violationRules {
         rule {
             limit {
-                minimum = 0.2
+                minimum = 0.0
             }
         }
     }
@@ -94,5 +100,6 @@ jacocoTestCoverageVerification {
 
 test {
     finalizedBy jacocoTestReport // report is always generated after tests run
+    useJUnitPlatform()
 }
 
