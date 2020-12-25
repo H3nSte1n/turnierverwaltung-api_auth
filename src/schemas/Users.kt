@@ -24,7 +24,7 @@ object Users : UUIDTable() {
 
     fun findUser(customName: String): User {
         return transaction {
-                Users.select { name eq customName }.first()
+                select { name eq customName }.first()
             }.let { it ->
             User(it[id], it[name], it[email], it[passwordHash], it[salt], it[role])
         }
@@ -32,7 +32,7 @@ object Users : UUIDTable() {
 
     fun userExist(customName: String): Boolean {
         return transaction {
-            Users.select { name eq customName }.empty().not()
+            select { name eq customName }.empty().not()
         }
     }
 
