@@ -31,8 +31,8 @@ object DatabaseFactory {
     private fun config(dotenv: Dotenv): HikariDataSource {
         val props = Properties()
         props.setProperty("dataSourceClassName", "org.postgresql.ds.PGSimpleDataSource")
-        setProperty(props, "user", dotenv["USER"] ?: "henry")
-        setProperty(props, "password", dotenv["PASSWORD"] ?: "default")
+        setProperty(props, "user", dotenv["USER"] ?: "root")
+        setProperty(props, "password", dotenv["PASSWORD"] ?: "secret")
         setProperty(props, "databaseName", dotenv["DATABASE"] ?: "authentication-service")
         setProperty(props, "portNumber", dotenv["PORT"] ?: "8080")
         setProperty(props, "serverName", dotenv["SERVER"] ?: "localhost")
