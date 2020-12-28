@@ -31,6 +31,7 @@ class LoginControllerTest {
         mockkObject(Jwt)
 
         every { Controller.isInputValid(any()) } returns true
+        every { UserValidation.validateUserExist(any()) } returns true
         every { Users.findUser(any()) } returns user
         every { UserValidation.validateLoginCredentials(any(), any()) } returns true
         every { Jwt.generateToken(any()) } returns "asd.asd.asd"
@@ -39,6 +40,7 @@ class LoginControllerTest {
 
         verify {
             Controller.isInputValid(any())
+            UserValidation.validateUserExist(any())
             Users.findUser(any())
             UserValidation.validateLoginCredentials(any(), any())
             Jwt.generateToken(any())
@@ -46,6 +48,7 @@ class LoginControllerTest {
 
         verifyOrder {
             Controller.isInputValid(any())
+            UserValidation.validateUserExist(any())
             Users.findUser(any())
             UserValidation.validateLoginCredentials(any(), any())
             Jwt.generateToken(any())
@@ -69,6 +72,21 @@ class LoginControllerTest {
     }
 
     @Test
+    fun breakUpIfUserNotExist() {
+        val user = User.instance
+
+        mockkObject(Controller)
+        mockkObject(UserValidation)
+
+        every { Controller.isInputValid(any()) } returns true
+        every { UserValidation.validateUserExist(any()) } returns false
+
+        assertThrows(ThrowableException::class.java) {
+            LoginController.login(user)
+        }
+    }
+
+    @Test
     fun breakUpIfAuthenticationFailed() {
         val user = User.instance
 
@@ -78,6 +96,7 @@ class LoginControllerTest {
         mockkObject(Jwt)
 
         every { Controller.isInputValid(any()) } returns true
+        every { UserValidation.validateUserExist(any()) } returns true
         every { Users.findUser(any()) } returns user
         every { UserValidation.validateLoginCredentials(any(), any()) } returns false
 
