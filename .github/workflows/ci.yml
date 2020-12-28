@@ -55,7 +55,7 @@ jobs:
         # Docker Hub image
         image: postgres
         env:
-          POSTGRES_USER: root
+          POSTGRES_USER: henry.steinhauer
           POSTGRES_PASSWORD: secret
           POSTGRES_DB: authentication-service
         ports:
@@ -74,21 +74,7 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 15
-        env:
-          USER: "${{ secrets.USER }}"
-          PASSWORD: "${{ secrets.PASSWORD }}"
-          DATABASE: "${{ secrets.DATABASE }}"
-          PORT: "${{ secrets.PORT }}"
-          SERVER: "${{ secrets.SERVER }}"
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
-      - name: Cache Gradle packages
-        uses: actions/cache@v2
-        with:
-          path: ~/.gradle/caches/
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}
-          restore-keys: ${{ runner.os }}-gradle
-      - name: Compile with gradle
-        run: ./gradlew build
       - name: Test with gradle
         run: ./gradlew test
