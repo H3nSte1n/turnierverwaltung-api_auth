@@ -14,6 +14,7 @@ on:
 jobs:
   compile:
     runs-on: ubuntu-latest
+    continue-on-error: true
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -34,6 +35,7 @@ jobs:
 
   code-style:
     runs-on: ubuntu-latest
+    continue-on-error: true
 
     steps:
       - name: Checkout Repo
@@ -47,6 +49,7 @@ jobs:
 
   test:
     runs-on: ubuntu-latest
+    continue-on-error: true
 
     steps:
       - name: Checkout Repo
@@ -55,5 +58,13 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 15
+        env:
+          USER: "${{ secrets.USER }}"
+          PASSWORD: "${{ secrets.PASSWORD }}"
+          DATABASE: "${{ secrets.DATABASE }}"
+          PORT: "${{ secrets.PORT }}"
+          SERVER: "${{ secrets.SERVER }}"
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
       - name: Test with gradle
         run: ./gradlew test
