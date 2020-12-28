@@ -14,5 +14,4 @@ class JwtTest {
 
         assertNotNull(token)
     }
-
 }

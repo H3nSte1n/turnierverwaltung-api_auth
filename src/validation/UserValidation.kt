@@ -2,7 +2,6 @@ package validation
 
 import data.User
 import helper.Password.generateHash
-import org.mindrot.jbcrypt.BCrypt
 import schemas.Users
 
 object UserValidation {
@@ -33,10 +32,10 @@ object UserValidation {
     fun validatePassword(password: String, salt: String, expectedPwd: String): Boolean {
         val checkHash = generateHash(password, salt)
 
-        if(checkHash.length !== expectedPwd.length) return false
+        if (checkHash.length != expectedPwd.length) return false
 
         for ((index, char) in checkHash.withIndex()) {
-            if(char !== expectedPwd[index]) return false
+            if (char != expectedPwd[index]) return false
         }
 
         return true

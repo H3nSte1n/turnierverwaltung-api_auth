@@ -16,7 +16,7 @@ import kotlin.test.BeforeTest
 import kotlin.test.assertEquals
 import kotlin.test.assertNotNull
 
-class UsersTest: DatabaseConnection() {
+class UsersTest : DatabaseConnection() {
 
     @BeforeTest
     fun prepare() {
@@ -98,7 +98,6 @@ class UsersTest: DatabaseConnection() {
         val user = createAndStoreUser()
         isUserExists = Users.userExist(user.name)
         assertEquals(isUserExists, true)
-
     }
 
     private fun createAndStoreUser(): User {
@@ -124,7 +123,6 @@ class UsersTest: DatabaseConnection() {
 
         return user
     }
-
 
     private fun prepareTables() {
         transaction {

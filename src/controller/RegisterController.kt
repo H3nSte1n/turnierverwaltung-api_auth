@@ -11,11 +11,10 @@ object RegisterController {
     fun register(credentials: User): String {
         val inputs = arrayOf(credentials.name, credentials.password, credentials.role!!.name)
 
-        if(!isInputValid(inputs)) throw ThrowableException()
-        if(validateUserExist(credentials.name)) throw ThrowableException()
+        if (!isInputValid(inputs)) throw ThrowableException()
+        if (validateUserExist(credentials.name)) throw ThrowableException()
         val user: User = createUser(credentials)
 
         return generateToken(user)
     }
-
 }

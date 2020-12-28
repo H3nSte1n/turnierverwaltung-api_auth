@@ -2,9 +2,9 @@ package helper
 
 import com.auth0.jwt.JWT
 import com.auth0.jwt.algorithms.Algorithm
+import com.typesafe.config.ConfigFactory
 import data.User
 import java.util.*
-import com.typesafe.config.ConfigFactory
 
 object Jwt {
     private const val MIN = 3_600_000
@@ -20,6 +20,6 @@ object Jwt {
         .withClaim("role", user.role.toString())
         .sign(algorithm)
 
-    private fun getExpirationDate(hours: Int)
-        = Date(System.currentTimeMillis() + (MIN * hours))
+    private fun getExpirationDate(hours: Int) =
+        Date(System.currentTimeMillis() + (MIN * hours))
 }

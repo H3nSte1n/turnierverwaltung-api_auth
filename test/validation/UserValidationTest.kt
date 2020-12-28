@@ -50,7 +50,7 @@ class UserValidationTest {
     }
 
     @Nested
-    inner class when_run_validateUserExist: DatabaseConnection() {
+    inner class when_run_validateUserExist : DatabaseConnection() {
 
         @BeforeEach
         fun prepare() {

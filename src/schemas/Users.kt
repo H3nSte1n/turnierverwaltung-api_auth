@@ -24,8 +24,8 @@ object Users : UUIDTable() {
 
     fun findUser(customName: String): User {
         return transaction {
-                select { name eq customName }.first()
-            }.let { it ->
+            select { name eq customName }.first()
+        }.let { it ->
             User(it[id], it[name], it[email], it[passwordHash], it[salt], it[role])
         }
     }

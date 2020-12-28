@@ -3,8 +3,6 @@ package api.v1
 import api.api
 import com.fasterxml.jackson.databind.SerializationFeature
 import com.papsign.ktor.openapigen.OpenAPIGen
-import com.turnierverwaltung_api_auth.module
-import controller.RegisterController
 import io.ktor.application.*
 import io.ktor.features.*
 import io.ktor.http.*
@@ -12,9 +10,6 @@ import io.ktor.http.content.*
 import io.ktor.jackson.*
 import io.ktor.routing.*
 import io.ktor.server.testing.*
-import io.mockk.every
-import io.mockk.mockkObject
-import io.mockk.verify
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 import kotlin.test.*
