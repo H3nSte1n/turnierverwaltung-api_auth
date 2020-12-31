@@ -63,6 +63,7 @@ jobs:
         image: postgres:latest
         env:
           POSTGRES_USER: "root"
+          POSTGRES_PASSWORD: "secret"
           POSTGRES_DB: "authentication"
         ports:
           - 5432:5432
@@ -83,6 +84,6 @@ jobs:
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
       - name: Setup PostgreSQL Database
-        run: createdb -h localhost -U root -W authentication
+        run: createdb -h localhost -U root -w authentication
       - name: Test with gradle
         run: ./gradlew test

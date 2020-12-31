@@ -32,7 +32,7 @@ object DatabaseFactory {
         val props = Properties()
         props.setProperty("dataSourceClassName", "org.postgresql.ds.PGSimpleDataSource")
         setProperty(props, "user", dotenv["USER"] ?: "root")
-        setProperty(props, "password", dotenv["PASSWORD"] ?: "")
+        setProperty(props, "password", dotenv["PASSWORD"] ?: "secret")
         setProperty(props, "databaseName", dotenv["DATABASE"] ?: "authentication")
         setProperty(props, "portNumber", dotenv["PORT"] ?: "5432")
         setProperty(props, "serverName", dotenv["SERVER"] ?: "localhost")
