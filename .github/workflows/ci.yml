@@ -50,6 +50,9 @@ jobs:
   test:
     runs-on: ubuntu-latest
     continue-on-error: true
+    env:
+      SECRET: dna8sdh8ashd8asnd8asd
+      ISSUER: turnierverwaltung
     services:
       postgres:
         # Docker Hub image

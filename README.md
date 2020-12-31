@@ -23,7 +23,7 @@
 
 
 - set following env variables
-  - USERNAME=db-username
+  - USER=db-username
   - PASSWORD=db-password
   - DATABASE=db-name
   - PORT=port
