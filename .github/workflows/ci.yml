@@ -53,10 +53,14 @@ jobs:
     env:
       SECRET: dna8sdh8ashd8asnd8asd
       ISSUER: turnierverwaltung
+      USER: root
+      PASSWORD: secret
+      DATABASE: authentication
+      SERVER: localhost
     services:
       postgres:
         # Docker Hub image
-        image: postgres
+        image: postgres:latest
         env:
           POSTGRES_USER: "root"
           POSTGRES_PASSWORD: "secret"
@@ -79,5 +83,7 @@ jobs:
           java-version: 15
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
+      - name: Setup PostgreSQL Database
+        run: createdb -h localhost -U root -W authentication
       - name: Test with gradle
         run: ./gradlew test
