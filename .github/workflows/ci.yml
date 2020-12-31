@@ -57,6 +57,7 @@ jobs:
       PASSWORD: secret
       DATABASE: authentication
       SERVER: localhost
+      PGPASSWORD: secret
     services:
       postgres:
         # Docker Hub image
@@ -84,6 +85,6 @@ jobs:
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
       - name: Setup PostgreSQL Database
-        run: createdb -h localhost -U root -w authentication
+        run: createdb -h localhost -U root -W authentication
       - name: Test with gradle
         run: ./gradlew test
