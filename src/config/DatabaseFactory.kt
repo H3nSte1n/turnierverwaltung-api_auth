@@ -36,7 +36,6 @@ object DatabaseFactory {
         setProperty(props, "databaseName", dotenv["DATABASE"] ?: "authentication")
         setProperty(props, "portNumber", dotenv["PORT"] ?: "5432")
         setProperty(props, "serverName", dotenv["SERVER"] ?: "localhost")
-        props.put("javax.persistence.create-database-schemas", true)
 
         val config = HikariConfig(props)
         config.validate()
