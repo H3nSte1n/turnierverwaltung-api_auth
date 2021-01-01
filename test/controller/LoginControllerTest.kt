@@ -6,7 +6,7 @@ import helper.Jwt
 import io.mockk.*
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Assertions.assertThrows
-import org.junit.jupiter.api.DisplayName
+import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 import schemas.Users
 import statuspages.AuthenticationException
@@ -20,88 +20,91 @@ class LoginControllerTest {
         unmockkAll()
     }
 
-    @Test
-    @DisplayName("Integration Test login()")
-    fun integrationTestsOnLogin() {
-        val user = User.instance
+    @Nested
+    inner class when_run_register {
 
-        mockkObject(Controller)
-        mockkObject(Users)
-        mockkObject(UserValidation)
-        mockkObject(Jwt)
+        @Test
+        fun should_call_specific_methods() {
+            val user = User.instance
 
-        every { Controller.isInputValid(any()) } returns true
-        every { UserValidation.validateUserExist(any()) } returns true
-        every { Users.findUser(any()) } returns user
-        every { UserValidation.validateLoginCredentials(any(), any()) } returns true
-        every { Jwt.generateToken(any()) } returns "asd.asd.asd"
+            mockkObject(Controller)
+            mockkObject(Users)
+            mockkObject(UserValidation)
+            mockkObject(Jwt)
 
-        LoginController.login(user)
+            every { Controller.isInputValid(any()) } returns true
+            every { UserValidation.validateUserExist(any()) } returns true
+            every { Users.findUser(any()) } returns user
+            every { UserValidation.validateLoginCredentials(any(), any()) } returns true
+            every { Jwt.generateToken(any()) } returns "asd.asd.asd"
 
-        verify {
-            Controller.isInputValid(any())
-            UserValidation.validateUserExist(any())
-            Users.findUser(any())
-            UserValidation.validateLoginCredentials(any(), any())
-            Jwt.generateToken(any())
-        }
-
-        verifyOrder {
-            Controller.isInputValid(any())
-            UserValidation.validateUserExist(any())
-            Users.findUser(any())
-            UserValidation.validateLoginCredentials(any(), any())
-            Jwt.generateToken(any())
-        }
-    }
-
-    @Test
-    fun breakUpIfInputIsInvalid() {
-        val user = User.instance
-
-        mockkObject(Controller)
-        mockkObject(Users)
-        mockkObject(UserValidation)
-        mockkObject(Jwt)
-
-        every { Controller.isInputValid(any()) } returns false
-
-        assertThrows(ThrowableException::class.java) {
             LoginController.login(user)
+
+            verify {
+                Controller.isInputValid(any())
+                UserValidation.validateUserExist(any())
+                Users.findUser(any())
+                UserValidation.validateLoginCredentials(any(), any())
+                Jwt.generateToken(any())
+            }
+
+            verifyOrder {
+                Controller.isInputValid(any())
+                UserValidation.validateUserExist(any())
+                Users.findUser(any())
+                UserValidation.validateLoginCredentials(any(), any())
+                Jwt.generateToken(any())
+            }
         }
-    }
 
-    @Test
-    fun breakUpIfUserNotExist() {
-        val user = User.instance
+        @Test
+        fun should_break_up_if_input_is_invalid() {
+            val user = User.instance
 
-        mockkObject(Controller)
-        mockkObject(UserValidation)
+            mockkObject(Controller)
+            mockkObject(Users)
+            mockkObject(UserValidation)
+            mockkObject(Jwt)
 
-        every { Controller.isInputValid(any()) } returns true
-        every { UserValidation.validateUserExist(any()) } returns false
+            every { Controller.isInputValid(any()) } returns false
 
-        assertThrows(ThrowableException::class.java) {
-            LoginController.login(user)
+            assertThrows(ThrowableException::class.java) {
+                LoginController.login(user)
+            }
         }
-    }
 
-    @Test
-    fun breakUpIfAuthenticationFailed() {
-        val user = User.instance
+        @Test
+        fun should_break_up_if_user_not_exist() {
+            val user = User.instance
 
-        mockkObject(Controller)
-        mockkObject(Users)
-        mockkObject(UserValidation)
-        mockkObject(Jwt)
+            mockkObject(Controller)
+            mockkObject(UserValidation)
 
-        every { Controller.isInputValid(any()) } returns true
-        every { UserValidation.validateUserExist(any()) } returns true
-        every { Users.findUser(any()) } returns user
-        every { UserValidation.validateLoginCredentials(any(), any()) } returns false
+            every { Controller.isInputValid(any()) } returns true
+            every { UserValidation.validateUserExist(any()) } returns false
 
-        assertThrows(AuthenticationException::class.java) {
-            LoginController.login(user)
+            assertThrows(ThrowableException::class.java) {
+                LoginController.login(user)
+            }
+        }
+
+        @Test
+        fun should_break_up_if_authentication_failed() {
+            val user = User.instance
+
+            mockkObject(Controller)
+            mockkObject(Users)
+            mockkObject(UserValidation)
+            mockkObject(Jwt)
+
+            every { Controller.isInputValid(any()) } returns true
+            every { UserValidation.validateUserExist(any()) } returns true
+            every { Users.findUser(any()) } returns user
+            every { UserValidation.validateLoginCredentials(any(), any()) } returns false
+
+            assertThrows(AuthenticationException::class.java) {
+                LoginController.login(user)
+            }
         }
     }
 }
