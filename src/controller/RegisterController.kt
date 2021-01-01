@@ -2,7 +2,7 @@ package controller
 
 import data.User
 import helper.Controller.isInputValid
-import helper.Jwt.generateToken
+import helper.Jwt
 import schemas.Users.createUser
 import statuspages.ThrowableException
 import validation.UserValidation.validateUserExist
@@ -15,6 +15,6 @@ object RegisterController {
         if (validateUserExist(credentials.name)) throw ThrowableException()
         val user: User = createUser(credentials)
 
-        return generateToken(user)
+        return Jwt.generateToken(user)
     }
 }

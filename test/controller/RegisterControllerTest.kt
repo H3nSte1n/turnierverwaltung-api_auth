@@ -20,7 +20,7 @@ class RegisterControllerTest {
     }
 
     @Test
-    @DisplayName("Integration Test login()")
+    @DisplayName("Integration Test register()")
     fun integrationTestsOnRegister() {
         val user = User.instance
 
