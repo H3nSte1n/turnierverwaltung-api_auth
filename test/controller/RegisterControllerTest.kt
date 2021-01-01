@@ -19,6 +19,7 @@ class RegisterControllerTest {
         unmockkAll()
     }
 
+    /*
     @Test
     @DisplayName("Integration Test register()")
     fun integrationTestsOnRegister() {
@@ -50,6 +51,7 @@ class RegisterControllerTest {
             Jwt.generateToken(any())
         }
     }
+     */
 
     @Test
     fun breakUpIfInputIsInvalid() {
