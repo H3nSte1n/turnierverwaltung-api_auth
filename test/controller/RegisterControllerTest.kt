@@ -65,7 +65,7 @@ class RegisterControllerTest {
     }
 
     @Test
-    fun breakUpIfAuthenticationFailed() {
+    fun breakUpIfUserExist() {
         val user = User.instance
 
         mockkObject(Controller)
