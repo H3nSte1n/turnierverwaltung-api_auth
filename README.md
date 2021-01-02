@@ -28,4 +28,6 @@
   - DATABASE=db-name
   - PORT=port
   - SERVER=server
+  - SECRET=JWT Secret Key
+  - ISSUER=JWT Issuer
 
