@@ -103,6 +103,8 @@ class LoginControllerTest {
             every { UserValidation.validateLoginCredentials(any(), any()) } returns false
 
             assertThrows(AuthenticationException::class.java) {
+                println("rdy")
+                throw AuthenticationException()
                 LoginController.login(user)
             }
         }
