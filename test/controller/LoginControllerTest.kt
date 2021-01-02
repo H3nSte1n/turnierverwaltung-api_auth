@@ -13,6 +13,7 @@ import schemas.Users
 import statuspages.AuthenticationException
 import statuspages.ThrowableException
 import validation.UserValidation
+import kotlin.test.assertEquals
 
 class LoginControllerTest {
 
@@ -101,14 +102,15 @@ class LoginControllerTest {
             every { UserValidation.validateUserExist(any()) } returns true
             every { Users.findUser(any()) } returns user
             every { UserValidation.validateLoginCredentials(any(), any()) } returns false
-
+            var a = LoginController.login(user)
             try {
-                val a = LoginController.login(user)
+                a = LoginController.login(user)
                 println(a)
             }
             catch (e: Exception) {
                 println(e)
             }
+            assertEquals("xxx.xxx.xxx", a)
         }
     }
 }
