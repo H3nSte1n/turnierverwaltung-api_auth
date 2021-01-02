@@ -1,4 +1,4 @@
-/*package controller
+package controller
 
 import factories.User
 import helper.Controller
@@ -11,8 +11,16 @@ import org.junit.jupiter.api.Test
 import schemas.Users
 import statuspages.ThrowableException
 import validation.UserValidation
+import kotlin.test.BeforeTest
 
 class RegisterControllerTest {
+    lateinit var user: data.User
+
+    @BeforeTest
+    fun prepare() {
+        user = User.instance
+        unmockkAll()
+    }
 
     @AfterEach
     fun afterTest() {
@@ -24,8 +32,6 @@ class RegisterControllerTest {
 
         @Test
         fun should_call_specific_methods() {
-            val user = User.instance
-
             mockkObject(Controller)
             mockkObject(UserValidation)
             mockkObject(Users)
@@ -55,8 +61,6 @@ class RegisterControllerTest {
 
         @Test
         fun should_break_up_if_input_is_invalid() {
-            val user = User.instance
-
             mockkObject(Controller)
 
             every { Controller.isInputValid(any()) } returns false
@@ -68,8 +72,6 @@ class RegisterControllerTest {
 
         @Test
         fun should_break_up_if_user_exist() {
-            val user = User.instance
-
             mockkObject(Controller)
             mockkObject(UserValidation)
 
@@ -82,4 +84,4 @@ class RegisterControllerTest {
         }
     }
 }
-*/
+

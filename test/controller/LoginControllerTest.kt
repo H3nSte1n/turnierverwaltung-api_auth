@@ -13,10 +13,8 @@ import statuspages.AuthenticationException
 import statuspages.ThrowableException
 import validation.UserValidation
 import kotlin.test.BeforeTest
-import kotlin.test.assertEquals
 
 class LoginControllerTest {
-
     lateinit var user: data.User
 
     @BeforeTest
