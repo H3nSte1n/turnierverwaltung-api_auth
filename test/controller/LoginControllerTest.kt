@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Assertions.assertThrows
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 import schemas.Users
+import statuspages.AuthenticationException
 import statuspages.ThrowableException
 import validation.UserValidation
 import kotlin.test.BeforeTest
@@ -30,7 +31,7 @@ class LoginControllerTest {
     }
 
     @Nested
-    inner class when_run_register {
+    inner class when_run_login {
 
         @Test
         fun should_call_specific_methods() {
@@ -67,9 +68,6 @@ class LoginControllerTest {
         @Test
         fun should_break_up_if_input_is_invalid() {
             mockkObject(Controller)
-            mockkObject(Users)
-            mockkObject(UserValidation)
-            mockkObject(Jwt)
 
             every { Controller.isInputValid(any()) } returns false
 
@@ -96,21 +94,15 @@ class LoginControllerTest {
             mockkObject(Controller)
             mockkObject(Users)
             mockkObject(UserValidation)
-            mockkObject(Jwt)
 
             every { Controller.isInputValid(any()) } returns true
             every { UserValidation.validateUserExist(any()) } returns true
             every { Users.findUser(any()) } returns user
             every { UserValidation.validateLoginCredentials(any(), any()) } returns false
-            var a = LoginController.login(user)
-            try {
-                a = LoginController.login(user)
-                println(a)
+
+            assertThrows(AuthenticationException::class.java) {
+                LoginController.login(user)
             }
-            catch (e: Exception) {
-                println(e)
-            }
-            assertEquals("xxx.xxx.xxx", a)
         }
     }
 }
