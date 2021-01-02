@@ -6,6 +6,7 @@ import helper.Jwt
 import io.mockk.*
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Assertions.assertThrows
+import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 import schemas.Users
@@ -14,6 +15,13 @@ import statuspages.ThrowableException
 import validation.UserValidation
 
 class LoginControllerTest {
+
+    lateinit var user: data.User
+
+    @BeforeEach
+    fun prepare() {
+        user = User.instance
+    }
 
     @AfterEach
     fun afterTest() {
@@ -25,8 +33,6 @@ class LoginControllerTest {
 
         @Test
         fun should_call_specific_methods() {
-            val user = User.instance
-
             mockkObject(Controller)
             mockkObject(Users)
             mockkObject(UserValidation)
@@ -59,8 +65,6 @@ class LoginControllerTest {
 
         @Test
         fun should_break_up_if_input_is_invalid() {
-            val user = User.instance
-
             mockkObject(Controller)
             mockkObject(Users)
             mockkObject(UserValidation)
@@ -75,8 +79,6 @@ class LoginControllerTest {
 
         @Test
         fun should_break_up_if_user_not_exist() {
-            val user = User.instance
-
             mockkObject(Controller)
             mockkObject(UserValidation)
 
@@ -88,10 +90,8 @@ class LoginControllerTest {
             }
         }
 
-        /*@Test
+        @Test
         fun should_break_up_if_authentication_failed() {
-            val user = User.instance
-
             mockkObject(Controller)
             mockkObject(Users)
             mockkObject(UserValidation)
@@ -105,6 +105,6 @@ class LoginControllerTest {
             assertThrows(AuthenticationException::class.java) {
                 LoginController.login(user)
             }
-        }*/
+        }
     }
 }
