@@ -1,9 +1,10 @@
-/*package controller
+package controller
 
 import factories.User
 import helper.Controller
 import helper.Jwt
 import io.mockk.*
+import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Assertions.assertThrows
 import org.junit.jupiter.api.Nested
@@ -103,8 +104,8 @@ class LoginControllerTest {
             every { UserValidation.validateLoginCredentials(any(), any()) } returns false
 
             assertThrows(AuthenticationException::class.java) {
-                LoginController.login(user)
+                runBlocking { LoginController.login(user) }
             }
         }
     }
-}*/
+}
