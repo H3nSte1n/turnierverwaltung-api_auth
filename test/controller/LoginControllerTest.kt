@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 import schemas.Users
 import statuspages.AuthenticationException
+import statuspages.InvalidUserException
 import statuspages.ThrowableException
 import validation.UserValidation
 import kotlin.test.BeforeTest
@@ -82,7 +83,7 @@ class LoginControllerTest {
             every { Controller.isInputValid(any()) } returns true
             every { UserValidation.validateUserExist(any()) } returns false
 
-            assertThrows(ThrowableException::class.java) {
+            assertThrows(InvalidUserException::class.java) {
                 LoginController.login(user)
             }
         }
