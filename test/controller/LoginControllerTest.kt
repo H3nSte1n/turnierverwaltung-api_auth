@@ -102,9 +102,8 @@ class LoginControllerTest {
             every { Users.findUser(any()) } returns user
             every { UserValidation.validateLoginCredentials(any(), any()) } returns false
 
-            assertThrows(AuthenticationException::class.java) {
+            assertThrows(ThrowableException::class.java) {
                 println("rdy")
-                throw AuthenticationException()
                 LoginController.login(user)
             }
         }
