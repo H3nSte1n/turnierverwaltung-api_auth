@@ -18,6 +18,7 @@ jobs:
       PASSWORD: secret
       DATABASE: authentication
       SERVER: localhost
+      PORT: 5432
       PGPASSWORD: secret
     services:
       postgres:
