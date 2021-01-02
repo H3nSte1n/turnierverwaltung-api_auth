@@ -76,7 +76,7 @@ class RegisterControllerTest {
             mockkObject(Controller)
             mockkObject(UserValidation)
 
-            every { Controller.isInputValid(any()) } returns false
+            every { Controller.isInputValid(any()) } returns true
             every { UserValidation.validateUserExist(any()) } returns true
 
             assertThrows(InvalidUserException::class.java) {
