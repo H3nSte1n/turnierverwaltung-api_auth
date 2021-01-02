@@ -6,22 +6,22 @@ import helper.Jwt
 import io.mockk.*
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Assertions.assertThrows
-import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 import schemas.Users
-import statuspages.AuthenticationException
 import statuspages.ThrowableException
 import validation.UserValidation
+import kotlin.test.BeforeTest
 import kotlin.test.assertEquals
 
 class LoginControllerTest {
 
     lateinit var user: data.User
 
-    @BeforeEach
+    @BeforeTest
     fun prepare() {
         user = User.instance
+        unmockkAll()
     }
 
     @AfterEach
