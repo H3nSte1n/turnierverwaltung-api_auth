@@ -26,10 +26,12 @@ paths:
             application/json:
               schema:
                 $ref: './components/jwt.yml#/components/schemas/JWT'
+        400:
+          $ref: './components/errors.yml#/components/responses/BadRequest'
         401:
           $ref: './components/errors.yml#/components/responses/Unauthorized'
-        404:
-          $ref: './components/errors.yml#/components/responses/NotFound'
+        500:
+          $ref: './components/errors.yml#/components/responses/InternalServerError'
   /auth/sign_up:
     post:
       tags:
@@ -49,10 +51,12 @@ paths:
             application/json:
               schema:
                 $ref: './components/jwt.yml#/components/schemas/JWT'
+        400:
+          $ref: './components/errors.yml#/components/responses/BadRequest'
         401:
           $ref: './components/errors.yml#/components/responses/Unauthorized'
-        404:
-          $ref: './components/errors.yml#/components/responses/NotFound'
+        500:
+          $ref: './components/errors.yml#/components/responses/InternalServerError'
 
 
 
