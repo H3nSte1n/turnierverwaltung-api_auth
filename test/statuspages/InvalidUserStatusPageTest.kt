@@ -9,8 +9,7 @@ import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
 
-class UnknownErrorStatusPageTest {
-
+class InvalidUserStatusPageTest {
     @Nested
     inner class when_throw_exception {
 
@@ -18,24 +17,24 @@ class UnknownErrorStatusPageTest {
         fun response_status_and_message() {
             withTestApplication {
                 application.install(StatusPages) {
-                    unknownErrorStatusPage()
+                    invalidUserStatusPage()
                 }
                 application.routing {
                     get("/exception") {
-                        throw UnknownErrorException()
+                        throw InvalidUserException()
                     }
                 }
 
                 handleRequest(HttpMethod.Get, "/exception").let { call ->
                     assertEquals(
-                        HttpStatusCode.InternalServerError,
+                        HttpStatusCode.BadRequest,
                         call.response.status(),
-                        "Should return status code 500"
+                        "Should return status code 400"
                     )
                     assertEquals(
-                        UnknownErrorException().message,
+                        InvalidUserException().message,
                         call.response.content,
-                        "Should return error message from InternalServerError"
+                        "Should return error message from InvalidUserException"
                     )
                 }
             }

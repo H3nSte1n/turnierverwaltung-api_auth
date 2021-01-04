@@ -4,7 +4,7 @@ import io.ktor.features.*
 import io.ktor.http.*
 import io.ktor.response.*
 
-fun StatusPages.Configuration.userStatusPage() {
+fun StatusPages.Configuration.invalidUserStatusPage() {
     exception<InvalidUserException> { cause ->
         call.respondText(
             cause.message,
