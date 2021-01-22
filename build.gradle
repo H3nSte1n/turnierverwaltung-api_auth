@@ -69,6 +69,18 @@ dependencies {
     testImplementation "org.jetbrains.kotlin:kotlin-test-junit5"
 }
 
+jar {
+    manifest {
+        attributes 'Main-Class': 'src'
+    }
+
+    from {
+        (configurations.compile).collect {
+            it.isDirectory() ? it : zipTree(it)
+        }
+    }
+}
+
 test {
     finalizedBy jacocoTestReport // report is always generated after tests run
     useJUnitPlatform()
