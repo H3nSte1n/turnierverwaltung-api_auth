@@ -20,7 +20,7 @@ import javax.annotation.processing.Generated
 @Generated
 fun main(args: Array<String>): Unit = io.ktor.server.netty.EngineMain.main(args)
 
-fun Application.module() {
+fun Application.main() {
     val dotenv = dotenv {
         ignoreIfMissing = true
     }

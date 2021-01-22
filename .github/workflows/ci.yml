@@ -45,7 +45,7 @@ jobs:
         with:
           java-version: 15
       - name: Code Style with ktlint
-        run: ./gradlew ktlintFormat
+        run: ./gradlew ktlintCheck
 
   test:
     runs-on: ubuntu-latest
@@ -57,7 +57,8 @@ jobs:
       PASSWORD: secret
       DATABASE: authentication
       SERVER: localhost
-      PORT: 5432
+      PORT: 8080
+      PORT_DB: 5432
       PGPASSWORD: secret
     services:
       postgres:

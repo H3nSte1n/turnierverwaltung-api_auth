@@ -55,6 +55,7 @@ dependencies {
     implementation "io.ktor:ktor-auth-jwt:$ktor_version"
     implementation "com.github.papsign:Ktor-OpenAPI-Generator:-SNAPSHOT"
     implementation "org.mindrot:jbcrypt:0.4"
+    implementation "com.auth0:java-jwt:3.12.1"
 
     //environment variables
     implementation "io.github.cdimascio:dotenv-kotlin:6.2.1"
@@ -94,9 +95,8 @@ jacoco {
     toolVersion = "0.8.6"
 }
 
-task stage {
-    dependsOn installDist
-}
+task stage(dependsOn: ['clean', 'installDist'])
+
 
 jacocoTestReport {
     group = "Reporting"
