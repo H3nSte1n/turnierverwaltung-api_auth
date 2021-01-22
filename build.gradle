@@ -24,7 +24,7 @@ apply plugin: "com.github.johnrengelman.shadow"
 description "A simple authentication micro-service"
 group "com.turnierverwaltung_api_auth"
 version "1.0.0"
-mainClassName = "io.ktor.server.netty.EngineMain"
+mainClassName = "Application.kt"
 
 sourceSets {
     main.kotlin.srcDirs = main.java.srcDirs = ["src"]
