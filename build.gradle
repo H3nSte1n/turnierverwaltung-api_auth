@@ -10,6 +10,7 @@ buildscript {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath "org.jlleitschuh.gradle:ktlint-gradle:9.4.1"
         classpath "gradle.plugin.com.heroku.sdk.heroku-gradle:heroku-gradle:2.0.0"
+        classpath "com.github.jengelman.gradle.plugins:shadow:6.1.0"
     }
 }
 
@@ -18,6 +19,7 @@ apply plugin: "application"
 apply plugin: "org.jlleitschuh.gradle.ktlint"
 apply plugin: "jacoco"
 apply plugin: "com.heroku.sdk.heroku-gradle"
+apply plugin: "com.github.johnrengelman.shadow"
 
 description "A simple authentication micro-service"
 group "com.turnierverwaltung_api_auth"
