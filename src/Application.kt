@@ -13,8 +13,8 @@ import io.ktor.jackson.*
 import io.ktor.routing.*
 import statuspages.authStatusPage
 import statuspages.defaultStatusPage
-import statuspages.unknownErrorStatusPage
 import statuspages.invalidUserStatusPage
+import statuspages.unknownErrorStatusPage
 import javax.annotation.processing.Generated
 
 @Generated

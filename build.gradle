@@ -69,10 +69,6 @@ dependencies {
     testImplementation "org.jetbrains.kotlin:kotlin-test-junit5"
 }
 
-subprojects {
-    apply plugin: "org.jlleitschuh.gradle.ktlint"
-}
-
 test {
     finalizedBy jacocoTestReport // report is always generated after tests run
     useJUnitPlatform()
