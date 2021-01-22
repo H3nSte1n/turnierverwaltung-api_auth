@@ -91,15 +91,6 @@ jar {
     }
 }
 
-shadowJar {
-    manifest {
-        attributes 'Main-Class': 'src'
-    }
-    dependencies {
-        include(dependency('com.auth0:java-jwt:3.12.1'))
-    }
-}
-
 test {
     finalizedBy jacocoTestReport // report is always generated after tests run
     useJUnitPlatform()
