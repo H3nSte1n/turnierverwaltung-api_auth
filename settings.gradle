@@ -1,1 +1,9 @@
+pluginManagement {
+    repositories {
+        jcenter()
+        gradlePluginPortal()
+        mavenCentral()
+    }
+}
+
 rootProject.name = "turnierverwaltung_api_auth"
