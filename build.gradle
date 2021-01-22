@@ -89,6 +89,12 @@ jar {
     }
 }
 
+shadowJar {
+    manifest {
+        attributes 'Main-Class': 'src'
+    }
+}
+
 test {
     finalizedBy jacocoTestReport // report is always generated after tests run
     useJUnitPlatform()
