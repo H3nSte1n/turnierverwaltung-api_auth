@@ -11,7 +11,7 @@ buildscript {
         classpath "org.jlleitschuh.gradle:ktlint-gradle:9.4.1"
         classpath "gradle.plugin.com.heroku.sdk.heroku-gradle:heroku-gradle:2.0.0"
         classpath "com.github.jengelman.gradle.plugins:shadow:6.1.0"
-        classpath "io.ktor:ktor-auth-jwt:$ktor_version"
+        classpath "com.auth0:java-jwt:3.12.1"
     }
 }
 
@@ -57,6 +57,7 @@ dependencies {
     implementation "io.ktor:ktor-auth:$ktor_version"
     implementation "com.github.papsign:Ktor-OpenAPI-Generator:-SNAPSHOT"
     implementation "org.mindrot:jbcrypt:0.4"
+    implementation "com.auth0:java-jwt:3.12.1"
 
     //environment variables
     implementation "io.github.cdimascio:dotenv-kotlin:6.2.1"
