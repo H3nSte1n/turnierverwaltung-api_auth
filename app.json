@@ -1,0 +1,6 @@
+{
+  "name": "Authentication",
+  "description": "A simple authentication micro-service",
+  "addons": [ "heroku-postgresql" ],
+  "web": "java -jar ./build/install/turnierverwaltung_api_auth/bin/turnierverwaltung_api_auth"
+}

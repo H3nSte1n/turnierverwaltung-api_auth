@@ -34,7 +34,7 @@ object DatabaseFactory {
         setProperty(props, "user", dotenv["USER"])
         setProperty(props, "password", dotenv["PASSWORD"])
         setProperty(props, "databaseName", dotenv["DATABASE"])
-        setProperty(props, "portNumber", dotenv["PORT"])
+        setProperty(props, "portNumber", dotenv["PORT_DB"])
         setProperty(props, "serverName", dotenv["SERVER"])
 
         val config = HikariConfig(props)

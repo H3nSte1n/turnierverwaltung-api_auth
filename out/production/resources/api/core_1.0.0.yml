@@ -1,0 +1,59 @@
+openapi: 3.0.0
+info:
+  title: 'Authentication API'
+  description: 'API for an authentication-service. It includes login and registration.'
+  contact:
+    name: API Support
+    email: Henrysteinhauer@t-online.de
+    url: https://github.com/H3nSte1n
+  version: '1.0.0'
+
+paths:
+  /auth/sign_in:
+    post:
+      tags:
+        - Authentication
+      description: Authentication Endpoint
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: './components/credentials.yml#/components/schemas/Credentials'
+      responses:
+        '200':
+          description: Return JWT Token
+          content:
+            application/json:
+              schema:
+                $ref: './components/jwt.yml#/components/schemas/JWT'
+        401:
+          $ref: './components/errors.yml#/components/responses/Unauthorized'
+        404:
+          $ref: './components/errors.yml#/components/responses/NotFound'
+  /auth/sign_up:
+    post:
+      tags:
+        - Authentication
+      description: Registration Endpoint
+      requestBody:
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: './components/credentials.yml#/components/schemas/Credentials'
+                - $ref: './components/credentials.yml#/components/schemas/Credentials--extended'
+      responses:
+        '200':
+          description: Return JWT Token
+          content:
+            application/json:
+              schema:
+                $ref: './components/jwt.yml#/components/schemas/JWT'
+        401:
+          $ref: './components/errors.yml#/components/responses/Unauthorized'
+        404:
+          $ref: './components/errors.yml#/components/responses/NotFound'
+
+
+
+

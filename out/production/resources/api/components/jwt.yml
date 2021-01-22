@@ -1,0 +1,10 @@
+components:
+  schemas:
+    JWT:
+      type: object
+      properties:
+        jwt:
+          type: string
+          example: '***.***.***'
+      required:
+        - jwt

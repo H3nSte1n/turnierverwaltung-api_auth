@@ -15,7 +15,9 @@ import statuspages.authStatusPage
 import statuspages.defaultStatusPage
 import statuspages.unknownErrorStatusPage
 import statuspages.invalidUserStatusPage
+import javax.annotation.processing.Generated
 
+@Generated
 fun main(args: Array<String>): Unit = io.ktor.server.netty.EngineMain.main(args)
 
 fun Application.module() {
