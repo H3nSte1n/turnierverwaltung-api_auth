@@ -61,7 +61,7 @@ dependencies {
     implementation "io.github.cdimascio:dotenv-kotlin:6.2.2"
 
     //database
-    implementation "org.jetbrains.exposed:exposed:0.17.6"
+    implementation "org.jetbrains.exposed:exposed:0.17.7"
     implementation "com.zaxxer:HikariCP:3.4.5"
     implementation "org.postgresql:postgresql:42.2.1"
 
