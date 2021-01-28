@@ -34,7 +34,7 @@ fun Application.main() {
         method(HttpMethod.Post)
         method(HttpMethod.Head)
         header("MyCustomHeader")
-        allowCredentials = true
+        allowCredentials = false
         anyHost() // @TODO: Don't do this in production if possible. Try to limit it.
     }
 
