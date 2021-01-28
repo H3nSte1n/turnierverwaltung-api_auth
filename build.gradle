@@ -63,7 +63,7 @@ dependencies {
     //database
     implementation "org.jetbrains.exposed:exposed:0.17.7"
     implementation "com.zaxxer:HikariCP:3.4.5"
-    implementation "org.postgresql:postgresql:42.2.1"
+    implementation "org.postgresql:postgresql:42.2.18"
 
     //testing
     testImplementation "io.ktor:ktor-server-tests:$ktor_version"
