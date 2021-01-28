@@ -9,7 +9,11 @@ info:
   version: '1.0.0'
 
 paths:
+<<<<<<< HEAD
   /auth/sign_in:
+=======
+  /api/v1/sign-in:
+>>>>>>> 5ca7f86... feat: Change request url
     post:
       tags:
         - Authentication
@@ -32,7 +36,11 @@ paths:
           $ref: './components/errors.yml#/components/responses/Unauthorized'
         500:
           $ref: './components/errors.yml#/components/responses/InternalServerError'
+<<<<<<< HEAD
   /auth/sign_up:
+=======
+  /api/v1/sign-up:
+>>>>>>> 5ca7f86... feat: Change request url
     post:
       tags:
         - Authentication
