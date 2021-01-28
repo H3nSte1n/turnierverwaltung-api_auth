@@ -32,6 +32,7 @@ fun Application.main() {
         method(HttpMethod.Delete)
         method(HttpMethod.Patch)
         method(HttpMethod.Post)
+        method(HttpMethod.Head)
         header("MyCustomHeader")
         allowCredentials = true
         anyHost() // @TODO: Don't do this in production if possible. Try to limit it.
