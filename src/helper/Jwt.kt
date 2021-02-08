@@ -1,6 +1,7 @@
 package helper
 
 import com.auth0.jwt.JWT
+import com.auth0.jwt.JWTVerifier
 import com.auth0.jwt.algorithms.Algorithm
 import data.User
 import io.github.cdimascio.dotenv.dotenv
@@ -22,6 +23,11 @@ object Jwt {
         .withClaim("name", user.name)
         .withClaim("role", user.role.toString())
         .sign(algorithm)
+
+    fun verifier(): JWTVerifier = JWT
+        .require(algorithm)
+        .withIssuer(issuer)
+        .build()
 
     private fun getExpirationDate(hours: Int) =
         Date(System.currentTimeMillis() + (MIN * hours))
