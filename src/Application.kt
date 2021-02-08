@@ -20,7 +20,6 @@ import statuspages.invalidUserStatusPage
 import statuspages.unknownErrorStatusPage
 import javax.annotation.processing.Generated
 
-
 @Generated
 fun main(args: Array<String>): Unit = io.ktor.server.netty.EngineMain.main(args)
 
@@ -48,7 +47,7 @@ fun Application.main() {
             validate {
                 val name = it.payload.getClaim("name").asString()
                 val role = it.payload.getClaim("role").toString()
-                if(name !== null) {
+                if (name !== null) {
                     JWTPrincipal(it.payload)
                 } else {
                     null
