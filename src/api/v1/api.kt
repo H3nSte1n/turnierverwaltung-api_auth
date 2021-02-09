@@ -6,5 +6,6 @@ fun Route.v1() {
     route("/v1") {
         apiDoc()
         authentication()
+        authorize()
     }
 }
