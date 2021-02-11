@@ -13,6 +13,7 @@ import io.ktor.features.*
 import io.ktor.http.*
 import io.ktor.http.content.*
 import io.ktor.jackson.*
+import io.ktor.response.*
 import io.ktor.routing.*
 import statuspages.authStatusPage
 import statuspages.defaultStatusPage
@@ -46,8 +47,9 @@ fun Application.main() {
             verifier(Jwt.verifier())
             validate {
                 val name = it.payload.getClaim("name").asString()
-                val role = it.payload.getClaim("role").toString()
+                val role = it.payload.getClaim("role").asString()
                 if (name !== null) {
+                    respondText(role)
                     JWTPrincipal(it.payload)
                 } else {
                     null

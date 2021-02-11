@@ -8,8 +8,6 @@ import io.ktor.routing.*
 
 fun Route.authorize() {
     authenticate {
-        post("/auth") {
-            call.respond(HttpStatusCode.Accepted)
-        }
+        post("/auth") {}
     }
 }
