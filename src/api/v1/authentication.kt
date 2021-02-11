@@ -10,15 +10,14 @@ import io.ktor.routing.*
 
 fun Route.authentication() {
     post("/sign-in") {
-        val credentials = call.receive<User>()
-        val token = LoginController.login(credentials)
-        call.respond(token)
+        val receivedCredentials = call.receive<User>()
+        val respondedCredentials = LoginController.login(receivedCredentials)
+        call.respond(respondedCredentials)
     }
 
     post("/sign-up") {
-        val credentials = call.receive<User>()
-        println(credentials)
-        val token = RegisterController.register(credentials)
-        call.respond(token)
+        val receivedCredentials = call.receive<User>()
+        val respondedCredentials = RegisterController.register(receivedCredentials)
+        call.respond(respondedCredentials)
     }
 }
