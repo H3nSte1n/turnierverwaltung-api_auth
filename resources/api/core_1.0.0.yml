@@ -25,7 +25,9 @@ paths:
           content:
             application/json:
               schema:
-                $ref: './components/jwt.yml#/components/schemas/JWT'
+                allOf:
+                  - $ref: './components/jwt.yml#/components/schemas/JWT'
+                  - $ref: './components/jwt.yml#/components/schemas/JWT-extended'
         400:
           $ref: './components/errors.yml#/components/responses/BadRequest'
         401:

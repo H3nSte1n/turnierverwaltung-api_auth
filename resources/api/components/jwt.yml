@@ -8,3 +8,11 @@ components:
           example: '***.***.***'
       required:
         - jwt
+    JWT-extended:
+      type: object
+      properties:
+        role:
+          type: string
+          example: admin
+      required:
+        - role
