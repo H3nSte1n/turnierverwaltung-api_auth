@@ -4,7 +4,6 @@ import com.turnierverwaltung_api_auth.enums.UserRole
 import controller.LoginController
 import controller.RegisterController
 import data.Credentials
-import helper.Jwt
 import io.ktor.application.*
 import io.ktor.auth.*
 import io.ktor.auth.jwt.*

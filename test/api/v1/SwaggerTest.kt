@@ -3,7 +3,6 @@ package api.v1
 import api.api
 import com.fasterxml.jackson.databind.SerializationFeature
 import com.papsign.ktor.openapigen.OpenAPIGen
-import helper.Jwt
 import io.ktor.application.*
 import io.ktor.auth.jwt.*
 import io.ktor.features.*
