@@ -3,13 +3,17 @@ package api.v1
 import api.api
 import com.fasterxml.jackson.databind.SerializationFeature
 import com.papsign.ktor.openapigen.OpenAPIGen
+import helper.Jwt
 import io.ktor.application.*
+import io.ktor.auth.jwt.*
 import io.ktor.features.*
 import io.ktor.http.*
 import io.ktor.http.content.*
 import io.ktor.jackson.*
+import io.ktor.response.*
 import io.ktor.routing.*
 import io.ktor.server.testing.*
+import org.eclipse.jetty.client.api.Authentication
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 import kotlin.test.*
@@ -44,6 +48,21 @@ class SwaggerTest {
 
     private fun initApplication(tests: (call: TestApplicationCall) -> Unit, path: String) {
         withTestApplication {
+            application.install(io.ktor.auth.Authentication) {
+                jwt {
+                    verifier(Jwt.verifier())
+                    validate {
+                        val name = it.payload.getClaim("name").asString()
+                        val role = it.payload.getClaim("role").asString()
+                        if (name !== null) {
+                            respondText(role)
+                            JWTPrincipal(it.payload)
+                        } else {
+                            null
+                        }
+                    }
+                }
+            }
 
             application.install(OpenAPIGen) {
                 serveSwaggerUi = true
