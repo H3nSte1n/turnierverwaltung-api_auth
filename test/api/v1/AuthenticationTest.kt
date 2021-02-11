@@ -109,19 +109,7 @@ class AuthenticationTest {
     private fun initApplication(tests: (call: TestApplicationCall) -> Unit, path: String, body: String) {
         withTestApplication {
             application.install(Authentication) {
-                jwt {
-                    verifier(Jwt.verifier())
-                    validate {
-                        val name = it.payload.getClaim("name").asString()
-                        val role = it.payload.getClaim("role").asString()
-                        if (name !== null) {
-                            respondText(role)
-                            JWTPrincipal(it.payload)
-                        } else {
-                            null
-                        }
-                    }
-                }
+                jwt {}
             }
 
             application.routing {
